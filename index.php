@@ -7,7 +7,7 @@
 
             <!-- Main image -->
             <div class="main-content__portrait">
-                <img src="https://source.unsplash.com/650x400" alt="">
+                <img src="https://source.unsplash.com/650x500" alt="">
                 <!-- Image caption -->
                 <p class="main-content__portrait-caption">Caption by so and so Here</p>
                 <p class="main-content__excerpt">From there, after six days and seven nights, you arrive at Zobeide, the white city, well exposed to the moon, with streets wound about themselves as in a skein. They tell this tale of its foundation: men of various nations had an identical dream. They saw a woman running at night through an unknown city; she was seen from behind, with long hair, and she was naked. They dreamed of pursuing her. As they twisted and turned, each of them lost her. After the dream, they set out in search of that city; they never found it, but they found</p>
@@ -17,7 +17,7 @@
             <div class="main-content__music">
                 <!-- Image -->
                 <div class="music__image">
-                    <img src="assets/brent_penny_album.jpg" alt="">
+                    <img src="<?php bloginfo('template_directory'); ?>/img/brent_penny_album.jpg" alt="">
                 </div>
                 <!-- Links -->
                 <div class="music__links">
