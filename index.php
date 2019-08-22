@@ -5,19 +5,39 @@
         <!-- Container for photo and record links -->
         <div class="main-content">
 
+        <?php
+
+        $args = array(
+            'post_type' => 'portrait_post'
+        );
+        $main_posts = new WP_Query($args);
+
+        while ($main_posts->have_posts()) {
+            $main_posts->the_post();
+
+            ?>
+
             <!-- Main image -->
             <div class="main-content__portrait">
-                <img src="https://source.unsplash.com/650x500" alt="">
+                <img src="<?php echo get_the_post_thumbnail_url(get_the_ID()); ?>" alt="">
                 <!-- Image caption -->
                 <p class="main-content__portrait-caption">Caption by so and so Here</p>
-                <p class="main-content__excerpt">From there, after six days and seven nights, you arrive at Zobeide, the white city, well exposed to the moon, with streets wound about themselves as in a skein. They tell this tale of its foundation: men of various nations had an identical dream. They saw a woman running at night through an unknown city; she was seen from behind, with long hair, and she was naked. They dreamed of pursuing her. As they twisted and turned, each of them lost her. After the dream, they set out in search of that city; they never found it, but they found</p>
+                <!-- Portrait excerpt -->
+                <div class="main-content__excerpt"><?php the_excerpt(); ?></div>
             </div>
+
+            <?php
+
+            }
+            wp_reset_query();
+
+            ?>
             
             <!-- Record and links -->
             <div class="main-content__music">
                 <!-- Image -->
                 <div class="music__image">
-                    <img src="<?php bloginfo('template_directory'); ?>/img/brent_penny_album.jpg" alt="">
+                    <img src="<?php bloginfo('template_directory'); ?>/assets/brent_penny_record.jpg" alt="">
                 </div>
                 <!-- Links -->
                 <div class="music__links">
