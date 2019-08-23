@@ -89,9 +89,9 @@
             <h2>Contact / Social</h2>
             <ul>
                 <li><a href="#"><i class="fab fa-instagram fa-3x"></i></a></li>
-                <li><a href="#"><i class="fab fa-facebook-square fa-2x"></i></a></li>
-                <li><a href="#"><i class="fab fa-twitter fa-lg"></i></a></li>
-                <li><a href="#">email@email.com</a></li>
+                <li><a href="#"><i class="fab fa-facebook-square fa-3x"></i></a></li>
+                <li><a href="#"><i class="fab fa-twitter fa-3x"></i></a></li>
+                <li class="contact-email"><a href="#">email@email.com</a></li>
             </ul>
         </div>
 
