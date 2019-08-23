@@ -21,9 +21,9 @@
         <div class="main-content__portrait">
             <img src="<?php echo get_the_post_thumbnail_url(get_the_ID()); ?>" alt="">
             <!-- Image caption -->
-            <p class="main-content__portrait-caption">Caption by so and so Here</p>
+            <p class="main-content__portrait-caption"><?php the_excerpt(); ?></p>
             <!-- Portrait excerpt -->
-            <div class="main-content__excerpt"><?php the_excerpt(); ?></div>
+            <div class="main-content__excerpt"><?php the_content(); ?></div>
         </div>
 
         <?php
@@ -72,7 +72,7 @@
 
                 ?>
 
-            <div class="tour-dates"><a href="<?php echo get_post_meta(get_the_ID(), 'show_link', true); ?>" target="_blank"><?php the_content(); ?></a></div>
+            <p class="tour-dates"><a href="<?php echo get_post_meta(get_the_ID(), 'show_link', true); ?>" target="_blank"><?php the_content(); ?></a></p>
 
 
             <?php

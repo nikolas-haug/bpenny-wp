@@ -134,3 +134,7 @@ function hcf_save_meta_box($post_id)
     }
 }
 add_action('save_post', 'hcf_save_meta_box');
+
+// Remove extra p tags in posts
+remove_filter( 'the_content', 'wpautop' );
+remove_filter( 'the_excerpt', 'wpautop' );
