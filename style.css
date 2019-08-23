@@ -13,7 +13,8 @@ body {
 .banner {
   background: black;
   text-align: center;
-  padding: 2em 0; }
+  padding: 1.4em 0;
+  font-size: 1.3em; }
   .banner h1 {
     color: #fff;
     background-image: -webkit-gradient(linear, left top, right top, color-stop(0, #f22), color-stop(0.15, #f2f), color-stop(0.3, #22f), color-stop(0.45, #2ff), color-stop(0.6, #2f2), color-stop(0.75, #2f2), color-stop(0.9, #ff2), color-stop(1, #f22));
@@ -38,38 +39,50 @@ body {
       flex-direction: column; } }
   .main-content .main-content__portrait {
     flex: 1;
-    padding: 0.5em 2em 0.5em 2em; }
+    padding: 0.5em 0 0.5em 3.5em; }
+    @media (max-width: 800px) {
+      .main-content .main-content__portrait {
+        padding-left: 2em;
+        padding-right: 2em; } }
     .main-content .main-content__portrait img {
-      width: 100%; }
+      width: 75%; }
+      @media (max-width: 800px) {
+        .main-content .main-content__portrait img {
+          width: 100%; } }
     .main-content .main-content__portrait .main-content__portrait-caption {
       font-style: italic; }
     .main-content .main-content__portrait p {
       padding-top: 0.5em; }
     .main-content .main-content__portrait .main-content__excerpt {
       font-family: 'Noto Serif', serif;
-      font-size: 14px; }
+      font-size: 15px;
+      letter-spacing: 0.4px;
+      padding-top: 1em; }
       .main-content .main-content__portrait .main-content__excerpt::first-letter {
         font-size: 21px;
         color: purple; }
   .main-content .main-content__music {
     flex: 1;
-    text-align: center;
     padding-top: 0.5em;
-    padding-bottom: 0.5em; }
+    padding-bottom: 0.5em;
+    display: flex;
+    flex-direction: column; }
     .main-content .main-content__music .music__image {
       text-align: center; }
       @media (max-width: 800px) {
         .main-content .main-content__music .music__image {
           padding-top: 2em; } }
       .main-content .main-content__music .music__image img {
-        width: 50%;
+        width: 65%;
         box-shadow: 0 0 15px rgba(255, 255, 255, 0.3); }
     .main-content .main-content__music .music__links {
-      padding-top: 0.5em; }
+      padding-top: 1.5em;
+      margin: 0 auto; }
       .main-content .main-content__music .music__links h4 {
         padding-bottom: 0.2em; }
       .main-content .main-content__music .music__links ul {
-        list-style: none; }
+        list-style: none;
+        padding-top: 0.5em; }
         .main-content .main-content__music .music__links ul li a {
           text-decoration: none;
           display: inline-block;
@@ -86,17 +99,23 @@ body {
       flex-direction: column; } }
   .sub-content .sub-content__tour {
     flex: 1;
-    padding-left: 2em; }
+    padding-left: 3.5em; }
     @media (max-width: 800px) {
       .sub-content .sub-content__tour {
         padding-left: 0;
-        font-size: 12px;
+        font-size: 13px;
         margin: 0 auto; } }
     .sub-content .sub-content__tour h2 {
-      padding-bottom: 0.8em; }
-    .sub-content .sub-content__tour .tour-dates {
-      font-size: 14px;
-      padding: 0.4em 0; }
+      padding-bottom: 0.8em;
+      text-shadow: 2px 2px 5px purple; }
+    .sub-content .sub-content__tour a {
+      text-decoration: none;
+      color: #fff; }
+      .sub-content .sub-content__tour a:hover:hover {
+        animation: rainbow 0.8s infinite; }
+    .sub-content .sub-content__tour p {
+      padding: 0.4em 0;
+      font-size: 14px; }
   .sub-content .sub-content__contact {
     flex: 1;
     padding-left: 2em;
@@ -105,13 +124,18 @@ body {
       padding-bottom: 0.5em; }
     .sub-content .sub-content__contact ul {
       list-style: none; }
-      .sub-content .sub-content__contact ul li a {
+      .sub-content .sub-content__contact ul li {
+        display: inline; }
+      .sub-content .sub-content__contact ul a {
         text-decoration: none;
         display: inline-block;
         padding: 0.2em;
         color: purple; }
-        .sub-content .sub-content__contact ul li a:hover {
+        .sub-content .sub-content__contact ul a:hover {
           animation: rainbow 1.5s infinite; }
+      .sub-content .sub-content__contact ul .contact-email {
+        padding-top: 0.5em;
+        display: block; }
     @media (max-width: 800px) {
       .sub-content .sub-content__contact {
         padding-top: 3em;

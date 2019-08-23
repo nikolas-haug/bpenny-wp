@@ -19,7 +19,8 @@ body {
 .banner {
   background: black;
   text-align: center;
-  padding: 2em 0;
+  padding: 1.4em 0;
+  font-size: 1.3em;
   h1 {
     // For backup if gradient doesn't work on browser
     color: #fff;
@@ -74,9 +75,16 @@ body {
   }
   .main-content__portrait {
     flex: 1;
-    padding: 0.5em 2em 0.5em 2em;
+    padding: 0.5em 0 0.5em 3.5em;
+    @media (max-width: 800px) {
+      padding-left: 2em;
+      padding-right: 2em;
+    }
     img {
-      width: 100%;
+      width: 75%;
+      @media (max-width: 800px) {
+        width: 100%;
+      }
     }
     .main-content__portrait-caption {
       font-style: italic;
@@ -86,7 +94,9 @@ body {
     }
     .main-content__excerpt {
       font-family: 'Noto Serif', serif;
-      font-size: 14px;
+      font-size: 15px;
+      letter-spacing: 0.4px;
+      padding-top: 1em;
       &::first-letter {
         font-size: 21px;
         color: purple;
@@ -95,26 +105,29 @@ body {
   }
   .main-content__music {
     flex: 1;
-    text-align: center;
     padding-top: 0.5em;
     padding-bottom: 0.5em;
+    display: flex;
+    flex-direction: column;
     .music__image {
       text-align: center;
       @media (max-width: 800px) {
         padding-top: 2em;
       }
       img {
-        width: 50%;
+        width: 65%;
         box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
       }
     }
     .music__links {
-      padding-top: 0.5em;
+      padding-top: 1.5em;
+      margin: 0 auto;
       h4 {
           padding-bottom: 0.2em;
       }
       ul {
         list-style: none;
+        padding-top: 0.5em;
         li a {
           text-decoration: none;
           display: inline-block;
@@ -138,18 +151,28 @@ body {
   }
   .sub-content__tour {
     flex: 1;
-    padding-left: 2em;
+    padding-left: 3.5em;
     @media (max-width: 800px) {
         padding-left: 0;
-        font-size: 12px;
+        font-size: 13px;
         margin: 0 auto;
     }
     h2 {
       padding-bottom: 0.8em;
+      text-shadow: 2px 2px 5px purple;
     }
-    .tour-dates {
-      font-size: 14px;
+    a {
+      text-decoration: none;
+      color: #fff;
+      &:hover {
+        &:hover {
+          animation: rainbow 0.8s infinite;
+        }
+      }
+    }
+    p {
       padding: 0.4em 0;
+      font-size: 14px;
     }
   }
   .sub-content__contact {
@@ -161,7 +184,10 @@ body {
     }
     ul {
       list-style: none;
-      li a {
+      li {
+        display: inline;
+      }
+       a {
         text-decoration: none;
         display: inline-block;
         padding: 0.2em;
@@ -169,6 +195,10 @@ body {
         &:hover {
           animation: rainbow 1.5s infinite;
         }
+      }
+      .contact-email {
+        padding-top: 0.5em;
+        display: block;
       }
     }
     @media (max-width: 800px) {
