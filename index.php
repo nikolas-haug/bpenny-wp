@@ -59,7 +59,21 @@
             <!-- Tour dates list -->
             <div class="sub-content__tour">
                 <h2>Tour Dates</h2>
-                <div><span>DATE</span> <span>Venue</span> <span>Location</span></div>
+
+                <?php
+
+                $args = array(
+                    'post_type' => 'tour_date_post'
+                );
+                $main_posts = new WP_Query($args);
+
+                while ($main_posts->have_posts()) {
+                    $main_posts->the_post();
+
+                ?>
+
+                <div class="tour-dates"><?php the_content(); ?></div>
+                <!-- <div><span>DATE</span> <span>Venue</span> <span>Location</span></div>
                 <p>11/02/2019 - First Avenue - Minneapolis, MN</p>
                 <p>10/21/2019 - Eagles Club - Minneapolis, MN</p>
                 <p>09/24/2019 - The Empty Bottle - Chicago, IL</p>
@@ -74,7 +88,15 @@
                 <p>10/21/2019 - Eagles Club - Minneapolis, MN</p>
                 <p>09/24/2019 - The Empty Bottle - Chicago, IL</p>
                 <p>08/28/2019 - The Big Room - Los Angeles, CA</p>
-                <div><span>DATE</span> - <span>Venue</span> - <span>Location</span></div>
+                <div><span>DATE</span> - <span>Venue</span> - <span>Location</span></div> -->
+
+                <?php
+
+                }
+                wp_reset_query();
+
+                ?>
+
             </div>
 
             <!-- Contact info/links -->

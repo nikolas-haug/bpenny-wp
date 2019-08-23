@@ -94,7 +94,8 @@ body {
         margin: 0 auto; } }
     .sub-content .sub-content__tour h2 {
       padding-bottom: 0.8em; }
-    .sub-content .sub-content__tour p {
+    .sub-content .sub-content__tour .tour-dates {
+      font-size: 14px;
       padding: 0.4em 0; }
   .sub-content .sub-content__contact {
     flex: 1;
