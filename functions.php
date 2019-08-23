@@ -75,24 +75,6 @@ function bpenny_post_types() {
 // add action 
 add_action('init', 'bpenny_post_types');
 
-// function add_placeholder_event($html)
-// {
-//     $screen = get_current_screen();
-//     $post_type = $screen->post_type;
-
-//     if ($post_type == 'tour_date_post') {
-//         $html = preg_replace('/<textarea/', '<textarea placeholder="John Doe" ', $html);
-//     }
-//     return $html;
-// }
-// add_filter('the_editor', 'add_placeholder_event');
-
-
-// $content   = 'Placeholder text!';
-// $editor_id = 'tour_date_post';
-
-// wp_editor( $content, $editor_id );
-
 /**
  * Register meta boxes.
  */
@@ -138,3 +120,12 @@ add_action('save_post', 'hcf_save_meta_box');
 // Remove extra p tags in posts
 remove_filter( 'the_content', 'wpautop' );
 remove_filter( 'the_excerpt', 'wpautop' );
+
+add_action('admin_menu', 'remove_options');
+ 
+// Remove unnecessary admin tabs
+function remove_options() {
+    remove_menu_page( 'edit.php' );
+    remove_menu_page( 'edit.php?post_type=page' );
+    remove_menu_page( 'edit-comments.php' );
+}
