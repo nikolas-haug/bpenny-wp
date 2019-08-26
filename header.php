@@ -6,14 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title><?php echo get_bloginfo(' name '); ?></title>
     <?php wp_head(); ?>
-    <!-- <link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/style.css"> -->
-    <!-- Google fonts -->
-    <!-- <link href="https://fonts.googleapis.com/css?family=Lexend+Peta&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Noto+Serif&display=swap" rel="stylesheet"> -->
-    <!-- Font awesome -->
-    <!-- <script src="https://kit.fontawesome.com/4685121e43.js"></script> -->
-    <!-- Cornify link -->
-    <!-- <script type="text/javascript" src="http://www.cornify.com/js/cornify.js"></script> -->
 </head>
 <body <?php body_class(); ?>>
     
