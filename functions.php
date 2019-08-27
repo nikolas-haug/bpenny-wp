@@ -5,7 +5,6 @@ function bpenny_setup()
 {
     wp_enqueue_style('style', get_stylesheet_uri(), NULL, 1.0);
     wp_enqueue_style('google-fonts', 'https://fonts.googleapis.com/css?family=Lexend+Peta&display=swap');
-    // wp_enqueue_script('main', get_theme_file_uri('/js/main.js'));
     wp_enqueue_script('prefix-font-awesome', 'https://kit.fontawesome.com/4685121e43.js', NULL, 1.0 . true);
 }
 
@@ -164,9 +163,7 @@ function remove_options()
     remove_menu_page('edit-comments.php');
 }
 
-// Remove the welcom menu in admin area
-remove_action('welcome_panel', 'wp_welcome_panel');
-
+// Remove unwanted widgets from the admin dashboard
 function remove_dashboard_meta()
 {
     remove_meta_box('dashboard_incoming_links', 'dashboard', 'normal'); //Removes the 'incoming links' widget
@@ -176,10 +173,31 @@ function remove_dashboard_meta()
     remove_meta_box('dashboard_quick_press', 'dashboard', 'side'); //Removes the 'Quick Draft' widget
     // remove_meta_box('dashboard_recent_drafts', 'dashboard', 'side'); //Removes the 'Recent Drafts' widget
     // remove_meta_box('dashboard_recent_comments', 'dashboard', 'normal'); //Removes the 'Activity' widget
-    remove_meta_box('dashboard_right_now', 'dashboard', 'normal'); //Removes the 'At a Glance' widget
+    // remove_meta_box('dashboard_right_now', 'dashboard', 'normal'); //Removes the 'At a Glance' widget
     remove_meta_box('dashboard_activity', 'dashboard', 'normal'); //Removes the 'Activity' widget (since 3.8)
 }
 add_action('admin_init', 'remove_dashboard_meta');
+
+/**
+ * Add a custom widget to the dashboard.
+ *
+ * This function is hooked into the 'wp_dashboard_setup' action below.
+ */
+function wpexplorer_add_dashboard_widgets() {
+	wp_add_dashboard_widget(
+		'wpexplorer_dashboard_widget', // Widget slug.
+		'My Custom Dashboard Widget', // Title.
+		'wpexplorer_dashboard_widget_function' // Display function.
+	);
+}
+add_action( 'wp_dashboard_setup', 'wpexplorer_add_dashboard_widgets' );
+
+/**
+ * Create the function to output the contents of your Dashboard Widget.
+ */
+function wpexplorer_dashboard_widget_function() {
+	echo "Hello there, I'm a great Dashboard Widget. Edit me!";
+}
 
 /**
  * Removes media buttons from post types. - And customizes editor (updated)
@@ -205,9 +223,6 @@ add_filter('wp_editor_settings', function ($settings) {
         'teeny'         => true,
         'tinymce'       => true
     );
-
-    // ['media_buttons'] = false;
-    // $settings['tinymce'] = true;
 
     return $settings;
 });
@@ -248,3 +263,20 @@ function my_prefix_after_title() {
 };
 
 add_action( 'edit_form_after_title', 'my_prefix_after_title' );
+
+// Add default content to the editor
+add_filter( 'default_content', 'my_editor_content', 10, 2 );
+ 
+function my_editor_content( $content, $post ) {
+ 
+    switch( $post->post_type ) {
+        case 'portrait_post':
+            $content = 'Wrtie your bio etc here...or delete this and leave blank';
+        break;
+        default:
+            $content = 'your default content';
+        break;
+    }
+ 
+    return $content;
+}
