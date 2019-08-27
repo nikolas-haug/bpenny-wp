@@ -79,7 +79,6 @@
 
             <p class="tour-dates"><a href="<?php echo get_post_meta(get_the_ID(), 'show_link', true); ?>" target="_blank"><span class="tour-dates__single"><?php echo date('m-d-Y', get_post_meta(get_the_ID(), 'show_date', true)); ?></span> - <?php the_content(); ?></a></p>
 
-
             <?php
 
             }
