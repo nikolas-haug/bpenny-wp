@@ -178,3 +178,37 @@ function remove_dashboard_meta() {
     remove_meta_box('dashboard_activity', 'dashboard', 'normal'); //Removes the 'Activity' widget (since 3.8)
 }
 add_action('admin_init', 'remove_dashboard_meta');
+
+// Customize the editor
+add_action( 'edit_form_after_title', function( $post ) 
+{
+    echo '<h1 style="color:blue">Tour Date</h1>';
+});
+
+/**
+ * Removes media buttons from post types. - And customizes editor (updated)
+ */
+add_filter( 'wp_editor_settings', function( $settings ) {
+    $current_screen = get_current_screen();
+
+    // Post types for which the media buttons should be removed.
+    $post_types = array( 'tour_date_post' );
+
+    // Bail out if media buttons should not be removed for the current post type.
+    if ( ! $current_screen || ! in_array( $current_screen->post_type, $post_types, true ) ) {
+        return $settings;
+    }
+
+    // Set up specified editor settings to return
+    $settings = array (
+        'textarea_rows' => 5,
+        'media_buttons' => FALSE,
+        'teeny'         => TRUE,
+        'tinymce'       => TRUE
+    );
+    
+    // ['media_buttons'] = false;
+    // $settings['tinymce'] = true;
+
+    return $settings;
+} );
