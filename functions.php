@@ -80,9 +80,10 @@ add_action('init', 'bpenny_post_types');
 /**
  * Custom code to hide UI to create >1 portrait_post posts
  */
-function disable_new_posts() {
-  
-    $global_settings = get_posts( 'post_type=portrait_post' );
+function disable_new_posts()
+{
+
+    $global_settings = get_posts('post_type=portrait_post');
 
     // Get the post ids (even if more than one) from specified post type
     $all_post_ids = get_posts(array(
@@ -92,18 +93,18 @@ function disable_new_posts() {
     ));
 
     // Check if post count is more than zero
-    if ( count($global_settings) != 0 ) {
-      // Remove sidebar link
-      global $submenu;
-      unset($submenu['edit.php?post_type=portrait_post'][10]);
- 
-      // Hide Add new button with CSS
-      if (isset($_GET['post_type']) && $_GET['post_type'] == 'portrait_post' || $_GET['post'] == $all_post_ids[0]) {
-          echo '<style type="text/css">
+    if (count($global_settings) != 0) {
+        // Remove sidebar link
+        global $submenu;
+        unset($submenu['edit.php?post_type=portrait_post'][10]);
+
+        // Hide Add new button with CSS
+        if (isset($_GET['post_type']) && $_GET['post_type'] == 'portrait_post' || $_GET['post'] == $all_post_ids[0]) {
+            echo '<style type="text/css">
           .page-title-action { display:none; }
           </style>';
-      }
-    } 
+        }
+    }
 }
 add_action('admin_menu', 'disable_new_posts');
 
@@ -166,7 +167,8 @@ function remove_options()
 // Remove the welcom menu in admin area
 remove_action('welcome_panel', 'wp_welcome_panel');
 
-function remove_dashboard_meta() {
+function remove_dashboard_meta()
+{
     remove_meta_box('dashboard_incoming_links', 'dashboard', 'normal'); //Removes the 'incoming links' widget
     remove_meta_box('dashboard_plugins', 'dashboard', 'normal'); //Removes the 'plugins' widget
     remove_meta_box('dashboard_primary', 'dashboard', 'normal'); //Removes the 'WordPress News' widget
@@ -179,58 +181,70 @@ function remove_dashboard_meta() {
 }
 add_action('admin_init', 'remove_dashboard_meta');
 
-// Customize the editor
-// add_action( 'edit_form_after_title', function( $post ) 
-// {
-//     echo '<h1 style="color:blue">Tour Date</h1>';
-// });
-
 /**
  * Removes media buttons from post types. - And customizes editor (updated)
  */
-add_filter( 'wp_editor_settings', function( $settings ) {
+add_filter('wp_editor_settings', function ($settings) {
     $current_screen = get_current_screen();
 
     // Post types for which the media buttons should be removed.
-    $post_types = array( 'portrait_post',
-                         'tour_date_post' 
+    $post_types = array(
+        'portrait_post',
+        'tour_date_post'
     );
 
     // Bail out if media buttons should not be removed for the current post type.
-    if ( ! $current_screen || ! in_array( $current_screen->post_type, $post_types, true ) ) {
+    if (!$current_screen || !in_array($current_screen->post_type, $post_types, true)) {
         return $settings;
     }
 
     // Set up specified editor settings to return
-    $settings = array (
+    $settings = array(
         'textarea_rows' => 5,
         'media_buttons' => false,
         'teeny'         => true,
         'tinymce'       => true
     );
-    
+
     // ['media_buttons'] = false;
     // $settings['tinymce'] = true;
 
     return $settings;
-} );
+});
 
 // Customize 'excerpt' title block - currently for all excerpts (only one in this theme)
-add_filter( 'gettext', 'wpse22764_gettext', 10, 2 );
- 
-function wpse22764_gettext( $translation, $original ) {
-    
-    if ( 'Excerpt' == $original ) 
-        {
-             return 'Photo Caption'; //Change here to what you want Excerpt box to be called
-        }else
-        {
-             $pos = strpos($original, 'Excerpts are optional hand-crafted summaries of your');
-         
-              if ($pos !== false) 
-              {
-                  return  'My Excerpt description here'; //Change the default text you see below the box with link to learn more...
-              }
+add_filter('gettext', 'wpse22764_gettext', 10, 2);
+
+function wpse22764_gettext($translation, $original)
+{
+
+    if ('Excerpt' == $original) {
+        return 'Photo Caption'; //Change here to what you want Excerpt box to be called
+    } else {
+        $pos = strpos($original, 'Excerpts are optional hand-crafted summaries of your');
+
+        if ($pos !== false) {
+            return  'Will appear below the featured image'; //Change the default text you see below the box with link to learn more...
         }
+    }
     return $translation;
 }
+
+/*
+Add subtext after title - more info for user on backend
+*/
+function my_prefix_after_title() {
+    $current_screen = get_current_screen();
+    // Post types for which the media buttons should be removed.
+    $post_types = array(
+        'tour_date_post'
+    );
+
+    // Bail out if media buttons should not be removed for the current post type.
+    if (!$current_screen || !in_array($current_screen->post_type, $post_types, true)) {
+        return;
+    }
+    echo '<h1 style="background: skyblue; padding: 1.5em; font-size: 15px;">Directions for the user. . .</h1>';
+};
+
+add_action( 'edit_form_after_title', 'my_prefix_after_title' );
