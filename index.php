@@ -65,7 +65,10 @@
             <?php
 
             $args = array(
-                'post_type' => 'tour_date_post'
+                'post_type' => 'tour_date_post',
+                'meta_key' => 'show_date',
+                'orderby' => 'meta_value',
+                'order' => 'ASC' 
             );
             $main_posts = new WP_Query($args);
 
