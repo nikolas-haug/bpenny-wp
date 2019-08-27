@@ -77,61 +77,6 @@ function bpenny_post_types()
 // add action 
 add_action('init', 'bpenny_post_types');
 
-// add_action( 'admin_menu', 'myprefix_adjust_the_wp_menu', 999 );
-// function myprefix_adjust_the_wp_menu() {
-//   //Get user id
-//   $current_user = wp_get_current_user();
-//   $user_id = $current_user->ID;
-
-//   //Get number of posts authored by user
-//   $args = array('post_type' =>'portrait_post','author'=>$user_id,'fields'>'ids');
-//   $count = count(get_posts($args));
-
-//   echo "<script>console.log('" . json_encode($count) . "');</script>";
-
-//Conditionally remove link:
-//   if($count>1) {
-//       //    $page = remove_submenu_page( 'edit.php?post_type=portrait_post', 'post-new.php?post_type=portrait_post' );
-//       register_post_type( 'portrait_post', array(
-//         'capability_type' => 'post',
-//         'capabilities' => array(
-//           'create_posts' => 'do_not_allow' // false < WP 4.5, credit @Ewout
-//         ),
-//         'map_meta_cap' => false // Set to `false`, if users are not allowed to edit/delete existing posts
-//       ));
-//   }
-// }
-
-/**
- * Custom code to hide UI to create >1 portrait_post posts
- */
-// function disable_new_posts()
-// {
-
-//     $global_settings = get_posts('post_type=portrait_post');
-
-//     if (count($global_settings) != 0) {
-//         // Remove sidebar link
-//         global $submenu;
-//         unset($submenu['edit.php?post_type=portrait_post'][10]);
-
-//         global $post;
-//         $post_id = $post->ID;
-        
-
-//         echo "<script>console.log('" . json_encode($_GET['post_type']) . "');</script>";
-//         echo "<script>console.log('" . json_encode($post_id) . "');</script>";
-
-//         // Hide Add new button with CSS
-//         if (isset($_GET['post_type']) && $_GET['post_type'] == 'portrait_post' || $_GET['post'] === $post_id) {
-//             echo '<style type="text/css">
-//           .page-title-action { display:none; }
-//           </style>';
-//         }
-//     }
-// }
-// add_action('admin_menu', 'disable_new_posts');
-
 /**
  * Custom code to hide UI to create >1 portrait_post posts
  */
@@ -146,8 +91,7 @@ function disable_new_posts() {
         'post_type' => 'portrait_post'
     ));
 
-    echo "<script>console.log('" . json_encode($all_post_ids) . "');</script>";
- 
+    // Check if post count is more than zero
     if ( count($global_settings) != 0 ) {
       // Remove sidebar link
       global $submenu;
@@ -221,3 +165,16 @@ function remove_options()
 
 // Remove the welcom menu in admin area
 remove_action('welcome_panel', 'wp_welcome_panel');
+
+function remove_dashboard_meta() {
+    remove_meta_box('dashboard_incoming_links', 'dashboard', 'normal'); //Removes the 'incoming links' widget
+    remove_meta_box('dashboard_plugins', 'dashboard', 'normal'); //Removes the 'plugins' widget
+    remove_meta_box('dashboard_primary', 'dashboard', 'normal'); //Removes the 'WordPress News' widget
+    remove_meta_box('dashboard_secondary', 'dashboard', 'normal'); //Removes the secondary widget
+    remove_meta_box('dashboard_quick_press', 'dashboard', 'side'); //Removes the 'Quick Draft' widget
+    // remove_meta_box('dashboard_recent_drafts', 'dashboard', 'side'); //Removes the 'Recent Drafts' widget
+    // remove_meta_box('dashboard_recent_comments', 'dashboard', 'normal'); //Removes the 'Activity' widget
+    remove_meta_box('dashboard_right_now', 'dashboard', 'normal'); //Removes the 'At a Glance' widget
+    remove_meta_box('dashboard_activity', 'dashboard', 'normal'); //Removes the 'Activity' widget (since 3.8)
+}
+add_action('admin_init', 'remove_dashboard_meta');
