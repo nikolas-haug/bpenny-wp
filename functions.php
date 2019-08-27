@@ -180,10 +180,10 @@ function remove_dashboard_meta() {
 add_action('admin_init', 'remove_dashboard_meta');
 
 // Customize the editor
-add_action( 'edit_form_after_title', function( $post ) 
-{
-    echo '<h1 style="color:blue">Tour Date</h1>';
-});
+// add_action( 'edit_form_after_title', function( $post ) 
+// {
+//     echo '<h1 style="color:blue">Tour Date</h1>';
+// });
 
 /**
  * Removes media buttons from post types. - And customizes editor (updated)
@@ -192,7 +192,9 @@ add_filter( 'wp_editor_settings', function( $settings ) {
     $current_screen = get_current_screen();
 
     // Post types for which the media buttons should be removed.
-    $post_types = array( 'tour_date_post' );
+    $post_types = array( 'portrait_post',
+                         'tour_date_post' 
+    );
 
     // Bail out if media buttons should not be removed for the current post type.
     if ( ! $current_screen || ! in_array( $current_screen->post_type, $post_types, true ) ) {
@@ -202,9 +204,9 @@ add_filter( 'wp_editor_settings', function( $settings ) {
     // Set up specified editor settings to return
     $settings = array (
         'textarea_rows' => 5,
-        'media_buttons' => FALSE,
-        'teeny'         => TRUE,
-        'tinymce'       => TRUE
+        'media_buttons' => false,
+        'teeny'         => true,
+        'tinymce'       => true
     );
     
     // ['media_buttons'] = false;
@@ -212,3 +214,23 @@ add_filter( 'wp_editor_settings', function( $settings ) {
 
     return $settings;
 } );
+
+// Customize 'excerpt' title block - currently for all excerpts (only one in this theme)
+add_filter( 'gettext', 'wpse22764_gettext', 10, 2 );
+ 
+function wpse22764_gettext( $translation, $original ) {
+    
+    if ( 'Excerpt' == $original ) 
+        {
+             return 'Photo Caption'; //Change here to what you want Excerpt box to be called
+        }else
+        {
+             $pos = strpos($original, 'Excerpts are optional hand-crafted summaries of your');
+         
+              if ($pos !== false) 
+              {
+                  return  'My Excerpt description here'; //Change the default text you see below the box with link to learn more...
+              }
+        }
+    return $translation;
+}
