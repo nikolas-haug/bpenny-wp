@@ -7,8 +7,10 @@
 
         <?php
 
+        // TO DO - limit the number of posts (and disable 'add new' on the backend)
         $args = array(
-            'post_type' => 'portrait_post'
+            'post_type' => 'portrait_post',
+            'posts_per_page' => 1
         );
         $main_posts = new WP_Query($args);
 
