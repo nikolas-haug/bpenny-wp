@@ -147,9 +147,9 @@ function hcf_save_meta_box($post_id)
         if (array_key_exists($field, $_POST)) {
 
             // Check if date field - then format to unix timestamp
-            if($field == 'show_date') {
+            if ($field == 'show_date') {
                 update_post_meta($post_id, $field, strtotime(str_replace('-', '/', $_POST[$field])));
-            // If not date - add other fields to post meta
+                // If not date - add other fields to post meta
             } else {
                 update_post_meta($post_id, $field, sanitize_text_field($_POST[$field]));
             }
@@ -303,3 +303,34 @@ function my_editor_content($content, $post)
     }
     return $content;
 }
+
+// Custom Admin footer
+// function wpexplorer_remove_footer_admin () {
+// 	echo '<span id="footer-thankyou">Built with love by <a href="http://www.wpexplorer.com/" target="_blank">Niko</a></span>';
+// }
+// add_filter( 'admin_footer_text', 'wpexplorer_remove_footer_admin' );
+
+// Customize the login form/page
+function wpexplorer_login_logo()
+{ ?>
+<style type="text/css">
+    body.login div#login h1 a {
+        background-image: url(<?php echo get_stylesheet_directory_uri(); ?>/assets/pixeld_fran_logo.png );
+        /* padding-bottom: 30px; */
+    }
+</style>
+<?php }
+add_action('login_enqueue_scripts', 'wpexplorer_login_logo');
+
+// Function to update the new login logo url
+function wpexplorer_login_logo_url()
+{
+    return esc_url(home_url('/'));
+}
+add_filter('login_headerurl', 'wpexplorer_login_logo_url');
+
+function wpexplorer_login_logo_url_title()
+{
+    return 'Your Site Name and Info';
+}
+add_filter('login_headertitle', 'wpexplorer_login_logo_url_title');
