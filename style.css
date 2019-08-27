@@ -39,7 +39,7 @@ body {
       flex-direction: column; } }
   .main-content .main-content__portrait {
     flex: 1;
-    padding: 0.5em 0 0.5em 3.5em; }
+    padding: 0.5em 0 0.5em 2em; }
     @media (max-width: 800px) {
       .main-content .main-content__portrait {
         padding-left: 2em;
@@ -99,13 +99,13 @@ body {
       flex-direction: column; } }
   .sub-content .sub-content__tour {
     flex: 1;
-    padding-left: 3.5em; }
+    padding-left: 2em; }
     @media (max-width: 800px) {
       .sub-content .sub-content__tour {
         padding-left: 0;
         font-size: 13px;
         margin: 0 auto; } }
-    .sub-content .sub-content__tour h2 {
+    .sub-content .sub-content__tour h1 {
       padding-bottom: 0.8em;
       text-shadow: 2px 2px 5px purple; }
     .sub-content .sub-content__tour a {

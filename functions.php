@@ -112,7 +112,7 @@ add_action('admin_menu', 'disable_new_posts');
  */
 function hcf_register_meta_boxes()
 {
-    add_meta_box('hcf-1', __('Add Link to Show', 'hcf'), 'hcf_display_callback', 'tour_date_post');
+    add_meta_box('hcf-1', __('Add Date and Link to Show', 'hcf'), 'hcf_display_callback', 'tour_date_post');
 }
 add_action('add_meta_boxes', 'hcf_register_meta_boxes');
 
@@ -139,11 +139,29 @@ function hcf_save_meta_box($post_id)
         $post_id = $parent_id;
     }
     $fields = [
-        'show_link'
+        'show_link',
+        'show_date'
     ];
+
+    // if (!isset($_POST['show_date'])) {
+    //     return $post_id;
+    // } else {
+    //     $event_as_timestamp = strtotime($_POST['show_date']);
+    //     update_post_meta($post_id->ID, 'show_date', $event_as_timestamp);
+    // }
+
     foreach ($fields as $field) {
         if (array_key_exists($field, $_POST)) {
-            update_post_meta($post_id, $field, sanitize_text_field($_POST[$field]));
+
+            // if ($field == 'show_date') {
+            //     $event_as_timestamp = strtotime(sanitize_text_field($_POST[$field]));
+            //     update_post_meta($post_id, $field, $event_as_timestamp);
+            // }
+            if($field == 'show_date') {
+                update_post_meta($post_id, $field, strtotime(str_replace('-', '/', $_POST[$field])));
+            } else {
+                update_post_meta($post_id, $field, sanitize_text_field($_POST[$field]));
+            }
         }
     }
 }
@@ -162,6 +180,17 @@ function remove_options()
     remove_menu_page('edit.php?post_type=page');
     remove_menu_page('edit-comments.php');
 }
+
+// remove toolbar items
+// https://digwp.com/2016/06/remove-toolbar-items/
+function shapeSpace_remove_toolbar_node($wp_admin_bar)
+{
+
+    // replace 'updraft_admin_node' with your node id
+    $wp_admin_bar->remove_node('new-content');
+    $wp_admin_bar->remove_node('comments');
+}
+add_action('admin_bar_menu', 'shapeSpace_remove_toolbar_node', 999);
 
 // Remove unwanted widgets from the admin dashboard
 function remove_dashboard_meta()
@@ -183,20 +212,22 @@ add_action('admin_init', 'remove_dashboard_meta');
  *
  * This function is hooked into the 'wp_dashboard_setup' action below.
  */
-function wpexplorer_add_dashboard_widgets() {
-	wp_add_dashboard_widget(
-		'wpexplorer_dashboard_widget', // Widget slug.
-		'My Custom Dashboard Widget', // Title.
-		'wpexplorer_dashboard_widget_function' // Display function.
-	);
+function wpexplorer_add_dashboard_widgets()
+{
+    wp_add_dashboard_widget(
+        'wpexplorer_dashboard_widget', // Widget slug.
+        'My Custom Dashboard Widget', // Title.
+        'wpexplorer_dashboard_widget_function' // Display function.
+    );
 }
-add_action( 'wp_dashboard_setup', 'wpexplorer_add_dashboard_widgets' );
+add_action('wp_dashboard_setup', 'wpexplorer_add_dashboard_widgets');
 
 /**
  * Create the function to output the contents of your Dashboard Widget.
  */
-function wpexplorer_dashboard_widget_function() {
-	echo "Hello there, I'm a great Dashboard Widget. Edit me!";
+function wpexplorer_dashboard_widget_function()
+{
+    echo "Hello there, I'm a great Dashboard Widget. Edit me!";
 }
 
 /**
@@ -248,7 +279,8 @@ function wpse22764_gettext($translation, $original)
 /*
 Add subtext after title - more info for user on backend - selected post types in 'post_types' array
 */
-function my_prefix_after_title() {
+function my_prefix_after_title()
+{
     $current_screen = get_current_screen();
     // Post types for which the media buttons should be removed.
     $post_types = array(
@@ -259,24 +291,28 @@ function my_prefix_after_title() {
     if (!$current_screen || !in_array($current_screen->post_type, $post_types, true)) {
         return;
     }
-    echo '<h1 style="background: skyblue; padding: 1.5em; font-size: 15px;">Directions for the user. . .</h1>';
+    echo '<h1 style="background: skyblue; padding: 1.5em; font-size: 15px;">Enter details for show date below. The post <strong>title</strong> is for reference and will not appear on the page</h1>';
 };
 
-add_action( 'edit_form_after_title', 'my_prefix_after_title' );
+add_action('edit_form_after_title', 'my_prefix_after_title');
 
 // Add default content to the editor
-add_filter( 'default_content', 'my_editor_content', 10, 2 );
- 
-function my_editor_content( $content, $post ) {
- 
-    switch( $post->post_type ) {
+add_filter('default_content', 'my_editor_content', 10, 2);
+
+function my_editor_content($content, $post)
+{
+
+    switch ($post->post_type) {
         case 'portrait_post':
             $content = 'Wrtie your bio etc here...or delete this and leave blank';
-        break;
+            break;
+        case 'tour_date_post':
+            $content = '';
+            break;
         default:
             $content = 'your default content';
-        break;
+            break;
     }
- 
+
     return $content;
 }

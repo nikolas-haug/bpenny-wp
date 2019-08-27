@@ -7,7 +7,7 @@
 
         <?php
 
-        // TO DO - limit the number of posts (and disable 'add new' on the backend)
+        // number of posts limited on backend, but also limit number here
         $args = array(
             'post_type' => 'portrait_post',
             'posts_per_page' => 1
@@ -25,7 +25,7 @@
             <!-- Image caption -->
             <p class="main-content__portrait-caption"><?php the_excerpt(); ?></p>
             <!-- Portrait excerpt -->
-            <div class="main-content__excerpt"><?php the_content(); ?></div>
+            <p class="main-content__excerpt"><?php the_content(); ?></p>
         </div>
 
         <?php
@@ -43,7 +43,7 @@
             </div>
             <!-- Links -->
             <div class="music__links">
-                <h4>Buy the record here:</h4>
+                <h3>Buy the record here:</h3>
                 <ul>
                     <li><a href="#"><i class="fab fa-spotify"></i> Spotify</a></li>
                     <li><a href="#"><i class="fab fa-itunes-note"></i> Apple Music</a></li>
@@ -60,7 +60,7 @@
 
         <!-- Tour dates list -->
         <div class="sub-content__tour">
-            <h2>Tour Dates</h2>
+            <h1>Tour Dates</h1>
 
             <?php
 
@@ -74,7 +74,7 @@
 
                 ?>
 
-            <p class="tour-dates"><a href="<?php echo get_post_meta(get_the_ID(), 'show_link', true); ?>" target="_blank"><?php the_content(); ?></a></p>
+            <p class="tour-dates"><a href="<?php echo get_post_meta(get_the_ID(), 'show_link', true); ?>" target="_blank"><span class="tour-dates__single"><?php echo date('m-d-y', get_post_meta(get_the_ID(), 'show_date', true)); ?></span> - <?php the_content(); ?></a></p>
 
 
             <?php
