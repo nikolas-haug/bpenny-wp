@@ -231,7 +231,7 @@ function wpse22764_gettext($translation, $original)
 }
 
 /*
-Add subtext after title - more info for user on backend
+Add subtext after title - more info for user on backend - selected post types in 'post_types' array
 */
 function my_prefix_after_title() {
     $current_screen = get_current_screen();
