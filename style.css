@@ -56,8 +56,9 @@ body {
     .main-content .main-content__portrait .main-content__excerpt {
       font-family: "Noto Serif", serif;
       font-size: 15px;
-      letter-spacing: 0.4px;
-      padding-top: 1em; }
+      letter-spacing: 1.2px;
+      padding-top: 1em;
+      line-height: 1.4; }
       .main-content .main-content__portrait .main-content__excerpt::first-letter {
         font-size: 21px;
         color: purple; }
@@ -92,7 +93,7 @@ body {
             animation: rainbow 0.8s infinite; }
 
 .sub-content {
-  padding-top: 2.5em;
+  padding-top: 1.5em;
   display: flex; }
   @media (max-width: 800px) {
     .sub-content {
@@ -120,7 +121,7 @@ body {
     flex: 1;
     padding-left: 2em;
     text-align: center; }
-    .sub-content .sub-content__contact h2 {
+    .sub-content .sub-content__contact h3 {
       padding-bottom: 0.5em; }
     .sub-content .sub-content__contact ul {
       list-style: none; }
@@ -129,7 +130,7 @@ body {
       .sub-content .sub-content__contact ul a {
         text-decoration: none;
         display: inline-block;
-        padding: 0.2em;
+        padding: 0.4em;
         color: purple; }
         .sub-content .sub-content__contact ul a:hover {
           animation: rainbow 1.5s infinite; }

@@ -95,8 +95,9 @@ body {
     .main-content__excerpt {
       font-family: "Noto Serif", serif;
       font-size: 15px;
-      letter-spacing: 0.4px;
+      letter-spacing: 1.2px;
       padding-top: 1em;
+      line-height: 1.4;
       &::first-letter {
         font-size: 21px;
         color: purple;
@@ -144,7 +145,7 @@ body {
 
 // Sub content
 .sub-content {
-  padding-top: 2.5em;
+  padding-top: 1.5em;
   display: flex;
   @media (max-width: 800px) {
     flex-direction: column;
@@ -179,7 +180,7 @@ body {
     flex: 1;
     padding-left: 2em;
     text-align: center;
-    h2 {
+    h3 {
       padding-bottom: 0.5em;
     }
     ul {
@@ -190,7 +191,7 @@ body {
       a {
         text-decoration: none;
         display: inline-block;
-        padding: 0.2em;
+        padding: 0.4em;
         color: purple;
         &:hover {
           animation: rainbow 1.5s infinite;

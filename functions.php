@@ -112,7 +112,7 @@ add_action('admin_menu', 'disable_new_posts');
  */
 function hcf_register_meta_boxes()
 {
-    add_meta_box('hcf-1', __('Add Date and Link to Show', 'hcf'), 'hcf_display_callback', 'tour_date_post');
+    add_meta_box('hcf-1', __('Add Date and Link to Show *(date required)', 'hcf'), 'hcf_display_callback', 'tour_date_post');
 }
 add_action('add_meta_boxes', 'hcf_register_meta_boxes');
 
@@ -143,22 +143,13 @@ function hcf_save_meta_box($post_id)
         'show_date'
     ];
 
-    // if (!isset($_POST['show_date'])) {
-    //     return $post_id;
-    // } else {
-    //     $event_as_timestamp = strtotime($_POST['show_date']);
-    //     update_post_meta($post_id->ID, 'show_date', $event_as_timestamp);
-    // }
-
     foreach ($fields as $field) {
         if (array_key_exists($field, $_POST)) {
 
-            // if ($field == 'show_date') {
-            //     $event_as_timestamp = strtotime(sanitize_text_field($_POST[$field]));
-            //     update_post_meta($post_id, $field, $event_as_timestamp);
-            // }
+            // Check if date field - then format to unix timestamp
             if($field == 'show_date') {
                 update_post_meta($post_id, $field, strtotime(str_replace('-', '/', $_POST[$field])));
+            // If not date - add other fields to post meta
             } else {
                 update_post_meta($post_id, $field, sanitize_text_field($_POST[$field]));
             }
@@ -263,7 +254,6 @@ add_filter('gettext', 'wpse22764_gettext', 10, 2);
 
 function wpse22764_gettext($translation, $original)
 {
-
     if ('Excerpt' == $original) {
         return 'Photo Caption'; //Change here to what you want Excerpt box to be called
     } else {
@@ -286,12 +276,11 @@ function my_prefix_after_title()
     $post_types = array(
         'tour_date_post'
     );
-
     // Bail out if media buttons should not be removed for the current post type.
     if (!$current_screen || !in_array($current_screen->post_type, $post_types, true)) {
         return;
     }
-    echo '<h1 style="background: skyblue; padding: 1.5em; font-size: 15px;">Enter details for show date below. The post <strong>title</strong> is for reference and will not appear on the page</h1>';
+    echo '<h1 style="background: skyblue; padding: 1.5em; font-size: 15px;">Enter details for show <strong>venue and location</strong> below. The post <strong>title</strong> is for reference and will not appear on the page</h1>';
 };
 
 add_action('edit_form_after_title', 'my_prefix_after_title');
@@ -301,7 +290,6 @@ add_filter('default_content', 'my_editor_content', 10, 2);
 
 function my_editor_content($content, $post)
 {
-
     switch ($post->post_type) {
         case 'portrait_post':
             $content = 'Wrtie your bio etc here...or delete this and leave blank';
@@ -313,6 +301,5 @@ function my_editor_content($content, $post)
             $content = 'your default content';
             break;
     }
-
     return $content;
 }

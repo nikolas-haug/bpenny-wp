@@ -77,7 +77,7 @@
 
                 ?>
 
-            <p class="tour-dates"><a href="<?php echo get_post_meta(get_the_ID(), 'show_link', true); ?>" target="_blank"><span class="tour-dates__single"><?php echo date('m-d-y', get_post_meta(get_the_ID(), 'show_date', true)); ?></span> - <?php the_content(); ?></a></p>
+            <p class="tour-dates"><a href="<?php echo get_post_meta(get_the_ID(), 'show_link', true); ?>" target="_blank"><span class="tour-dates__single"><?php echo date('m-d-Y', get_post_meta(get_the_ID(), 'show_date', true)); ?></span> - <?php the_content(); ?></a></p>
 
 
             <?php
@@ -91,12 +91,12 @@
 
         <!-- Contact info/links -->
         <div class="sub-content__contact">
-            <h2>Contact / Social</h2>
+            <h3>Contact / Social</h3>
             <ul>
                 <li><a href="#"><i class="fab fa-instagram fa-3x"></i></a></li>
                 <li><a href="#"><i class="fab fa-facebook-square fa-3x"></i></a></li>
                 <li><a href="#"><i class="fab fa-twitter fa-3x"></i></a></li>
-                <li class="contact-email"><a href="#">email@email.com</a></li>
+                <li class="contact-email"><a href="mailto:email@email.com">email@email.com</a></li>
             </ul>
         </div>
 
