@@ -28,13 +28,13 @@ add_action('after_setup_theme', 'bpenny_init');
 function bpenny_post_types()
 {
 
-    // Portrait and caption post type
+    // Portrait and caption post type - singular because limited to one custom post type
     register_post_type(
         'portrait_post',
         array(
             'rewrite' => array('slug' => 'portrait_post'),
             'labels' => array(
-                'name' => 'Portrait Posts',
+                'name' => 'Portrait Post',
                 'singular_name' => 'Portrait Post',
                 'add_new_item' => 'Add New Portrait Post',
                 'edit_item' => 'Edit Portrait Post'
@@ -323,14 +323,14 @@ function wpexplorer_login_logo()
 add_action('login_enqueue_scripts', 'wpexplorer_login_logo');
 
 // Function to update the new login logo url
-function wpexplorer_login_logo_url()
-{
-    return esc_url(home_url('/'));
-}
-add_filter('login_headerurl', 'wpexplorer_login_logo_url');
+// function wpexplorer_login_logo_url()
+// {
+//     return esc_url(home_url('/'));
+// }
+// add_filter('login_headerurl', 'wpexplorer_login_logo_url');
 
-function wpexplorer_login_logo_url_title()
-{
-    return 'Your Site Name and Info';
-}
-add_filter('login_headertitle', 'wpexplorer_login_logo_url_title');
+// function wpexplorer_login_logo_url_title()
+// {
+//     return 'Your Site Name and Info';
+// }
+// add_filter('login_headertitle', 'wpexplorer_login_logo_url_title');
