@@ -108,7 +108,7 @@ body {
         margin: 0 auto; } }
     .sub-content .sub-content__tour h1 {
       padding-bottom: 0.8em;
-      text-shadow: 2px 2px 5px purple; }
+      text-shadow: 2px 2px 2px purple, 3px 3px 1px peachpuff; }
     .sub-content .sub-content__tour a {
       text-decoration: none;
       color: #fff; }

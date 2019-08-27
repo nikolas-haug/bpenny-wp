@@ -305,10 +305,10 @@ function my_editor_content($content, $post)
 }
 
 // Custom Admin footer
-// function wpexplorer_remove_footer_admin () {
-// 	echo '<span id="footer-thankyou">Built with love by <a href="http://www.wpexplorer.com/" target="_blank">Niko</a></span>';
-// }
-// add_filter( 'admin_footer_text', 'wpexplorer_remove_footer_admin' );
+function wpexplorer_remove_footer_admin () {
+	echo '<span id="footer-thankyou">Built with love by <a href="http://www.wpexplorer.com/" target="_blank">Niko</a></span>';
+}
+add_filter( 'admin_footer_text', 'wpexplorer_remove_footer_admin' );
 
 // Customize the login form/page
 function wpexplorer_login_logo()
