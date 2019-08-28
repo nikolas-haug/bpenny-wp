@@ -1,3 +1,10 @@
+/*! 
+Theme Name: Bpenny-wp
+Author: Niko
+Author URI: nikolashaug.com
+Description: A simple theme for a musician or artist profile (Developed for Brent Penny)
+Version: 1.0
+*/
 *,
 *::before,
 *::after {
@@ -13,7 +20,7 @@ body {
 .banner {
   background: black;
   text-align: center;
-  padding: 1.4em 0;
+  padding: 1.5em 0;
   font-size: 1.3em; }
   .banner h1 {
     color: #fff;
