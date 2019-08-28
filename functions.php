@@ -280,7 +280,7 @@ function my_prefix_after_title()
     if (!$current_screen || !in_array($current_screen->post_type, $post_types, true)) {
         return;
     }
-    echo '<h1 style="background: skyblue; padding: 1.5em; font-size: 15px;">Enter details for show <strong>venue and location</strong> below. The post <strong>title</strong> is for reference and will not appear on the page</h1>';
+    echo '<h1 style="background: skyblue; padding: 1.5em; font-size: 15px;">Enter details for show <strong>venue and location etc</strong> below. The post <strong>title</strong> is for reference and will not appear on the page</h1>';
 };
 
 add_action('edit_form_after_title', 'my_prefix_after_title');
