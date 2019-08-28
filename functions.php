@@ -203,15 +203,15 @@ add_action('admin_init', 'remove_dashboard_meta');
  *
  * This function is hooked into the 'wp_dashboard_setup' action below.
  */
-function wpexplorer_add_dashboard_widgets()
-{
-    wp_add_dashboard_widget(
-        'wpexplorer_dashboard_widget', // Widget slug.
-        'My Custom Dashboard Widget', // Title.
-        'wpexplorer_dashboard_widget_function' // Display function.
-    );
-}
-add_action('wp_dashboard_setup', 'wpexplorer_add_dashboard_widgets');
+// function wpexplorer_add_dashboard_widgets()
+// {
+//     wp_add_dashboard_widget(
+//         'wpexplorer_dashboard_widget', // Widget slug.
+//         'My Custom Dashboard Widget', // Title.
+//         'wpexplorer_dashboard_widget_function' // Display function.
+//     );
+// }
+// add_action('wp_dashboard_setup', 'wpexplorer_add_dashboard_widgets');
 
 /**
  * Create the function to output the contents of your Dashboard Widget.
@@ -260,7 +260,7 @@ function wpse22764_gettext($translation, $original)
         $pos = strpos($original, 'Excerpts are optional hand-crafted summaries of your');
 
         if ($pos !== false) {
-            return  'Will appear below the featured image'; //Change the default text you see below the box with link to learn more...
+            return  'Appears below the featured image'; //Change the default text you see below the box with link to learn more...
         }
     }
     return $translation;
@@ -280,7 +280,7 @@ function my_prefix_after_title()
     if (!$current_screen || !in_array($current_screen->post_type, $post_types, true)) {
         return;
     }
-    echo '<h1 style="background: skyblue; padding: 1.5em; font-size: 15px;">Enter details for show <strong>venue and location etc</strong> below. The post <strong>title</strong> is for reference and will not appear on the page</h1>';
+    echo '<h1 style="background: skyblue; padding: 1.5em; font-size: 15px;">Put details for show <strong>venue and location, etc</strong> below. The post <strong>title</strong> (above) is for your reference and will not appear on the page</h1>';
 };
 
 add_action('edit_form_after_title', 'my_prefix_after_title');
@@ -292,7 +292,7 @@ function my_editor_content($content, $post)
 {
     switch ($post->post_type) {
         case 'portrait_post':
-            $content = 'Wrtie your bio etc here...or delete this and leave blank';
+            $content = 'Write your bio etc here...or delete this and leave blank';
             break;
         case 'tour_date_post':
             $content = '';
