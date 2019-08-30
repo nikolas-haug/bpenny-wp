@@ -50,7 +50,8 @@ body {
     @media (max-width: 800px) {
       .main-content .main-content__portrait {
         padding-left: 2em;
-        padding-right: 2em; } }
+        padding-right: 2em;
+        margin: 0 auto; } }
     .main-content .main-content__portrait img {
       width: 75%; }
       @media (max-width: 800px) {
@@ -106,7 +107,7 @@ body {
     .sub-content {
       flex-direction: column; } }
   .sub-content .sub-content__tour {
-    flex: 1;
+    flex: 1.5;
     padding-left: 2em; }
     @media (max-width: 800px) {
       .sub-content .sub-content__tour {
@@ -114,6 +115,7 @@ body {
         font-size: 13px;
         margin: 0 auto; } }
     .sub-content .sub-content__tour h1 {
+      font-size: 18px;
       padding-bottom: 0.8em;
       text-shadow: 2px 2px 2px purple, 3px 3px 1px peachpuff; }
     .sub-content .sub-content__tour a {
@@ -123,11 +125,13 @@ body {
         animation: rainbow 0.8s infinite; }
     .sub-content .sub-content__tour p {
       padding: 0.4em 0;
-      font-size: 14px; }
+      font-size: 16px; }
   .sub-content .sub-content__contact {
     flex: 1;
-    padding-left: 2em;
-    text-align: center; }
+    padding-left: 8em; }
+    @media (max-width: 800px) {
+      .sub-content .sub-content__contact {
+        text-align: center; } }
     .sub-content .sub-content__contact h3 {
       padding-bottom: 0.5em; }
     .sub-content .sub-content__contact ul {

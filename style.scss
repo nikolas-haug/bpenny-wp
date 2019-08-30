@@ -87,6 +87,7 @@ body {
     @media (max-width: 800px) {
       padding-left: 2em;
       padding-right: 2em;
+      margin: 0 auto;
     }
     img {
       width: 75%;
@@ -159,7 +160,7 @@ body {
     flex-direction: column;
   }
   .sub-content__tour {
-    flex: 1;
+    flex: 1.5;
     padding-left: 2em;
     @media (max-width: 800px) {
       padding-left: 0;
@@ -167,6 +168,7 @@ body {
       margin: 0 auto;
     }
     h1 {
+      font-size: 18px;
       padding-bottom: 0.8em;
       text-shadow: 2px 2px 2px purple, 3px 3px 1px peachpuff;
     }
@@ -181,13 +183,15 @@ body {
     }
     p {
       padding: 0.4em 0;
-      font-size: 14px;
+      font-size: 16px;
     }
   }
   .sub-content__contact {
     flex: 1;
-    padding-left: 2em;
-    text-align: center;
+    padding-left: 8em;
+    @media (max-width: 800px) {
+      text-align: center;
+    }
     h3 {
       padding-bottom: 0.5em;
     }
